@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Undangan Halal Bihalal – Keluarga Sahril Arifin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #111111;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      #splash {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 3rem 2rem;
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      #splash.hide {
+        opacity: 0;
+        transform: translateY(-24px);
+        pointer-events: none;
+      }
+      .splash-bismillah {
+        font-size: 26px;
+        color: #c9a96e;
+        letter-spacing: 2px;
+        margin-bottom: 2.5rem;
+        display: block;
+      }
+      .splash-sub {
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: #666;
+        text-transform: uppercase;
+        margin-bottom: 0.6rem;
+      }
+      .splash-event {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 28px;
+        color: #f5f0e8;
+        font-weight: 400;
+        line-height: 1.35;
+        margin-bottom: 3rem;
+      }
+      .splash-divider {
+        width: 1px;
+        height: 48px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          #c9a96e,
+          transparent
+        );
+        margin: 0 auto 3rem;
+      }
+      .splash-to {
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: #666;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+      }
+      .splash-name {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 32px;
+        color: #c9a96e;
+        font-weight: 400;
+        font-style: italic;
+        margin-bottom: 3.5rem;
+        line-height: 1.3;
+      }
+      .btn-open {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: transparent;
+        border: 1px solid #c9a96e;
+        color: #c9a96e;
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 14px 32px;
+        border-radius: 40px;
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .btn-open:hover {
+        background: #c9a96e;
+        color: #111;
+      }
+      .btn-open svg {
+        width: 14px;
+        height: 14px;
+        transition: transform 0.2s;
+      }
+      .btn-open:hover svg {
+        transform: translateY(2px);
+      }
+      .splash-from {
+        margin-top: 3.5rem;
+        font-size: 12px;
+        color: #444;
+        letter-spacing: 1px;
+      }
+      .splash-from span {
+        color: #666;
+      }
+
+      #invitation {
+        display: none;
+        width: 100%;
+        min-height: 100vh;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 2rem 1rem 4rem;
+        background: #f4f1eb;
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      #invitation.show {
+        display: flex;
+      }
+      #invitation.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .card {
+        width: 100%;
+        max-width: 460px;
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 2px 32px rgba(0, 0, 0, 0.1);
+      }
+      .card-header {
+        background: #111111;
+        padding: 3rem 2rem 2.5rem;
+        text-align: center;
+      }
+      .bismillah {
+        font-size: 24px;
+        color: #c9a96e;
+        letter-spacing: 2px;
+        display: block;
+        margin-bottom: 1.25rem;
+      }
+      .ev-label {
+        font-size: 10px;
+        letter-spacing: 3px;
+        color: #888;
+        text-transform: uppercase;
+        margin-bottom: 0.6rem;
+      }
+      .ev-title {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 30px;
+        color: #f5f0e8;
+        font-weight: 400;
+        line-height: 1.3;
+      }
+      .ev-year {
+        font-size: 13px;
+        color: #c9a96e;
+        letter-spacing: 1px;
+        margin-top: 0.75rem;
+      }
+      .card-body {
+        padding: 2rem 2rem 1.5rem;
+      }
+      .guest-label {
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: #999;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+      .guest-name {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 24px;
+        color: #1a1a1a;
+        font-weight: 400;
+        margin-bottom: 1.5rem;
+        line-height: 1.35;
+      }
+      .message {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.85;
+        border-left: 2px solid #c9a96e;
+        padding-left: 1rem;
+        margin-bottom: 1.75rem;
+      }
+      .divider {
+        height: 1px;
+        background: #f0ece4;
+        margin: 1.5rem 0;
+      }
+      .detail-row {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        margin-bottom: 1.1rem;
+      }
+      .detail-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+        background: #f5f0e8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .detail-icon svg {
+        width: 16px;
+        height: 16px;
+        color: #111;
+      }
+      .detail-label {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        color: #aaa;
+        text-transform: uppercase;
+      }
+      .detail-val {
+        font-size: 14px;
+        color: #1a1a1a;
+        font-weight: 500;
+        margin-top: 3px;
+      }
+      .detail-sub {
+        font-size: 13px;
+        color: #777;
+        margin-top: 2px;
+      }
+      .map-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 8px;
+        font-size: 12px;
+        color: #c9a96e;
+        text-decoration: none;
+        border: 1px solid #e8d9b8;
+        border-radius: 20px;
+        padding: 4px 12px;
+      }
+      .map-link:hover {
+        background: #fdf7ec;
+      }
+      .closing {
+        text-align: center;
+        font-size: 13px;
+        color: #888;
+        line-height: 1.8;
+        margin-top: 0.5rem;
+      }
+      .card-footer {
+        background: #f9f7f3;
+        border-top: 1px solid #ede9df;
+        padding: 1.5rem 2rem;
+        text-align: center;
+      }
+      .from-label {
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: #aaa;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+      .from-name {
+        font-size: 16px;
+        color: #1a1a1a;
+        font-weight: 500;
+      }
+      @media (max-width: 400px) {
+        .ev-title {
+          font-size: 24px;
+        }
+        .splash-name {
+          font-size: 26px;
+        }
+        .guest-name {
+          font-size: 20px;
+        }
+        .card-body {
+          padding: 1.5rem;
+        }
+        .card-header {
+          padding: 2.25rem 1.5rem 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HALAMAN 1: SPLASH -->
+    <div id="splash">
+      <span class="splash-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</span>
+      <p class="splash-sub">Undangan</p>
+      <p class="splash-event">Halal Bihalal<br />&amp; Open House</p>
+      <div class="splash-divider"></div>
+      <p class="splash-to">Kepada Yth.</p>
+      <p class="splash-name" id="splashName">Tamu Undangan</p>
+      <button class="btn-open" onclick="openInvitation()">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          />
+        </svg>
+        Buka Undangan
+      </button>
+      <p class="splash-from">Dari &nbsp;<span>Keluarga Sahril Arifin</span></p>
+    </div>
+
+    <!-- HALAMAN 2: UNDANGAN -->
+    <div id="invitation">
+      <div class="card">
+        <div class="card-header">
+          <span class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</span>
+          <p class="ev-label">Mengundang Anda ke acara</p>
+          <h1 class="ev-title">Halal Bihalal<br />&amp; Open House</h1>
+          <p class="ev-year">1446 H &nbsp;·&nbsp; 2026 M</p>
+        </div>
+        <div class="card-body">
+          <p class="guest-label">Kepada Yth.</p>
+          <p class="guest-name" id="guestName">Tamu Undangan</p>
+          <p class="message">
+            Assalamu'alaikum Warahmatullahi Wabarakatuh.<br /><br />
+            Dengan penuh kebahagiaan, kami mengundang Bapak/Ibu/Saudara/i untuk
+            hadir dalam acara Halal Bihalal dan Open House keluarga kami. Mari
+            kita pererat silaturahmi, saling memaafkan, dan berbagi kebahagiaan
+            di hari yang penuh berkah ini.
+          </p>
+          <div class="divider"></div>
+          <div class="detail-row">
+            <div class="detail-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+            </div>
+            <div>
+              <p class="detail-label">Tanggal &amp; Waktu</p>
+              <p class="detail-val">Sabtu, 04 April 2026</p>
+              <p class="detail-sub">Pukul 12.00 – 18.00 WIB</p>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="detail-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div>
+              <p class="detail-label">Lokasi</p>
+              <p class="detail-val">Kediaman Keluarga Sahril Arifin</p>
+              <p class="detail-sub">Jl. Bilal Km. 13,5, Medan–Binjai</p>
+              <a
+                class="map-link"
+                href="https://maps.google.com/?q=Jl.+Bilal+Km+13.5+Medan+Binjai"
+                target="_blank"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Buka di Maps
+              </a>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <p class="closing">
+            Kehadiran Bapak/Ibu/Saudara/i<br />
+            merupakan kehormatan bagi kami.<br />
+            <span style="color: #c9a96e; font-style: italic"
+              >Mohon maaf lahir dan batin.</span
+            >
+          </p>
+        </div>
+        <div class="card-footer">
+          <p class="from-label">Hormat kami,</p>
+          <p class="from-name">Keluarga Sahril Arifin</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var params = new URLSearchParams(window.location.search);
+      var rawName = params.get("nama") || params.get("name") || "";
+      var guestName = rawName.trim()
+        ? decodeURIComponent(rawName)
+        : "Tamu Undangan";
+
+      document.getElementById("splashName").textContent = guestName;
+      document.getElementById("guestName").textContent = guestName;
+
+      if (guestName !== "Tamu Undangan") {
+        document.title =
+          "Undangan untuk " +
+          guestName +
+          " \u2013 Halal Bihalal Keluarga Sahril Arifin";
+      }
+
+      function openInvitation() {
+        var splash = document.getElementById("splash");
+        var inv = document.getElementById("invitation");
+        splash.classList.add("hide");
+        setTimeout(function () {
+          splash.style.display = "none";
+          document.body.style.background = "#f4f1eb";
+          inv.classList.add("show");
+          inv.getBoundingClientRect();
+          inv.classList.add("visible");
+        }, 550);
+      }
+    </script>
+  </body>
+</html>
